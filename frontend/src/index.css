@@ -32,11 +32,15 @@ html { scrollbar-color: #2b3a5c var(--bg); }
 body {
   font-family: var(--font-body);
   background:
-    radial-gradient(1100px 500px at 15% -10%, rgba(52, 211, 153, 0.09), transparent 60%),
-    radial-gradient(900px 600px at 95% 0%, rgba(56, 189, 248, 0.08), transparent 55%),
-    radial-gradient(700px 700px at 50% 115%, rgba(99, 102, 241, 0.07), transparent 60%),
-    var(--bg);
-  background-attachment: fixed;
+    linear-gradient(
+      to bottom,
+      rgba(6, 9, 19, 0.18)  0%,
+      rgba(6, 9, 19, 0.45)  22%,
+      rgba(6, 9, 19, 0.82)  44%,
+      rgba(6, 9, 19, 0.97)  64%,
+      rgba(6, 9, 19, 1.00) 100%
+    ),
+    url('/stadium-bg.jpg') center 28% / cover no-repeat fixed;
   color: var(--text);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
@@ -57,9 +61,77 @@ input, textarea, select { font-family: inherit; }
   position: sticky;
   top: 0;
   z-index: 20;
-  backdrop-filter: blur(14px);
-  background: rgba(6, 9, 19, 0.75);
-  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(4px);
+  background: rgba(6, 9, 19, 0.22);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ─── hero ─── */
+
+.app-hero {
+  width: 100%;
+  padding: 64px 24px 44px;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.hero-eyebrow {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand-a);
+  margin-bottom: 6px;
+  display: block;
+}
+
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 46px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-shadow: 0 2px 24px rgba(0,0,0,0.6);
+}
+
+.hero-sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 6px;
+}
+
+.hero-stats {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hero-stat {
+  text-align: center;
+}
+
+.hero-stat-value {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
+  background: linear-gradient(135deg, var(--brand-a), var(--brand-b));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 3px;
+  letter-spacing: 0.04em;
 }
 
 .app-header-inner {
@@ -202,7 +274,7 @@ input, textarea, select { font-family: inherit; }
   width: 100%;
   max-width: 1240px;
   margin: 0 auto;
-  padding: 20px 24px 40px;
+  padding: 4px 24px 40px;
 }
 
 .app-grid {

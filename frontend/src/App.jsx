@@ -77,6 +77,30 @@ export default function App() {
         </div>
       </header>
 
+      <div className="app-hero" aria-label="Stadium overview">
+        <div>
+          <span className="hero-eyebrow">FIFA World Cup 2026 · East Rutherford, NJ</span>
+          <h1 className="hero-title">MetLife Stadium</h1>
+          <p className="hero-sub">Live crowd intelligence — fan-reported, AI-fused, confidence-scored</p>
+        </div>
+        <div className="hero-stats" role="status" aria-label="Live summary">
+          <div className="hero-stat">
+            <div className="hero-stat-value">
+              {zoneData.filter(z => z.state.status === 'congested').length}
+            </div>
+            <div className="hero-stat-label">congested zones</div>
+          </div>
+          <div className="hero-stat">
+            <div className="hero-stat-value">{nudges.length}</div>
+            <div className="hero-stat-label">active alerts</div>
+          </div>
+          <div className="hero-stat">
+            <div className="hero-stat-value">{feed.length}</div>
+            <div className="hero-stat-label">live reports</div>
+          </div>
+        </div>
+      </div>
+
       <main className="app-main">
         {nudges.length > 0 && (
           <div className="nudge-strip" role="region" aria-label="Live guidance">
