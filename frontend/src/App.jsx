@@ -3,6 +3,7 @@ import ZoneMap from './components/ZoneMap.jsx';
 import ReportForm from './components/ReportForm.jsx';
 import ChatAssistant from './components/ChatAssistant.jsx';
 import PulseFeed from './components/PulseFeed.jsx';
+import MatchCard from './components/MatchCard.jsx';
 import { fetchZones, fetchNudges, fetchFeed, fetchScenarios, triggerScenario } from './lib/api.js';
 
 const POLL_MS = 6000;
@@ -145,6 +146,7 @@ export default function App() {
           </div>
 
           <div className="col">
+            <MatchCard />
             <ReportForm onReportSubmitted={refresh} />
             <ChatAssistant />
           </div>
