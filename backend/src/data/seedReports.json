@@ -1,0 +1,102 @@
+[
+  {
+    "id": "rep_001",
+    "zoneId": "gate-b",
+    "issueType": "queue",
+    "severity": "high",
+    "rawText": "Queue at Gate B is insane, at least 20 minutes",
+    "language": "en",
+    "timestamp": "2026-07-18T14:10:00Z",
+    "sourceId": "anon-abc1"
+  },
+  {
+    "id": "rep_002",
+    "zoneId": "gate-b",
+    "issueType": "queue",
+    "severity": "high",
+    "rawText": "Gate B still backed up, not moving",
+    "language": "en",
+    "timestamp": "2026-07-18T14:15:00Z",
+    "sourceId": "anon-abc2"
+  },
+  {
+    "id": "rep_003",
+    "zoneId": "gate-b",
+    "issueType": "queue",
+    "severity": "medium",
+    "rawText": "Long line at B gate",
+    "language": "en",
+    "timestamp": "2026-07-18T14:20:00Z",
+    "sourceId": "anon-abc3"
+  },
+  {
+    "id": "rep_004",
+    "zoneId": "gate-d",
+    "issueType": "crowd",
+    "severity": "low",
+    "rawText": "Gate D is pretty smooth, moved right through",
+    "language": "en",
+    "timestamp": "2026-07-18T14:18:00Z",
+    "sourceId": "anon-abc4"
+  },
+  {
+    "id": "rep_005",
+    "zoneId": "concourse-north",
+    "issueType": "crowd",
+    "severity": "medium",
+    "rawText": "North concourse getting crowded near food stalls",
+    "language": "en",
+    "timestamp": "2026-07-18T14:12:00Z",
+    "sourceId": "anon-abc5"
+  },
+  {
+    "id": "rep_006",
+    "zoneId": "concourse-north",
+    "issueType": "crowd",
+    "severity": "high",
+    "rawText": "Can barely move in north concourse",
+    "language": "en",
+    "timestamp": "2026-07-18T14:22:00Z",
+    "sourceId": "anon-abc6"
+  },
+  {
+    "id": "rep_007",
+    "zoneId": "transport-hub",
+    "issueType": "queue",
+    "severity": "low",
+    "rawText": "Bus lines are moving, no major wait",
+    "language": "en",
+    "timestamp": "2026-07-18T14:05:00Z",
+    "sourceId": "anon-abc7"
+  },
+  {
+    "id": "rep_008",
+    "zoneId": "accessible-amenity",
+    "issueType": "accessibility",
+    "severity": "high",
+    "rawText": "Elevator near Gate C is broken, wheelchair users need to use ramp",
+    "language": "en",
+    "timestamp": "2026-07-18T14:00:00Z",
+    "sourceId": "anon-abc8"
+  },
+  {
+    "id": "rep_009",
+    "zoneId": "gate-c",
+    "issueType": "queue",
+    "severity": "low",
+    "rawText": "Gate C seems fine, short line",
+    "language": "en",
+    "timestamp": "2026-07-18T14:08:00Z",
+    "sourceId": "anon-abc9"
+  },
+  {
+    "id": "rep_010",
+    "zoneId": "section-114",
+    "issueType": "noise",
+    "severity": "medium",
+    "rawText": "Very loud near section 114, home fans going wild",
+    "language": "en",
+    "timestamp": "2026-07-18T14:25:00Z",
+    "sourceId": "anon-abc10"
+  }
+]
