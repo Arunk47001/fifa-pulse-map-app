@@ -85,10 +85,22 @@ export default function App() {
               return (
                 <div key={n.id} className={`nudge ${n.kind}`}>
                   <span className="nudge-icon" aria-hidden="true">{meta.icon}</span>
-                  <div>
+                  <div style={{ flex: 1 }}>
                     <span className="nudge-kind">{meta.label}</span>
                     {n.message}
                   </div>
+                  <span
+                    style={{
+                      flexShrink: 0,
+                      fontSize: 10,
+                      color: 'var(--text-faint)',
+                      paddingLeft: 10,
+                      whiteSpace: 'nowrap',
+                    }}
+                    title={`Triggered by zones: ${n.zoneIds?.join(', ')}`}
+                  >
+                    fusion engine ↗
+                  </span>
                 </div>
               );
             })}
