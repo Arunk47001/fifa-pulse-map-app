@@ -18,7 +18,7 @@ uncertainty**:
 
 - Fans submit short reports (voice or text, any language): "queue at Gate B is 20 min",
   "elevator broken near Gate C", "loud/crowded near section 114".
-- Claude transcribes/translates each report and extracts structured facts (location,
+- Gemini transcribes/translates each report and extracts structured facts (location,
   issue type, severity, timestamp, source reliability signal).
 - A **fusion engine** cross-checks conflicting reports using plausibility signals
   (recency, report frequency, distance between reported locations, time since kickoff)
@@ -39,7 +39,7 @@ uncertainty**:
   presentation layers (see ARCHITECTURE.md).
 - **Security**: no PII stored from anonymous reports; rate-limiting and basic abuse
   filtering on submissions (see ASSUMPTIONS.md).
-- **Efficiency**: fusion logic is deterministic/rule-based where possible; Claude is
+- **Efficiency**: fusion logic is deterministic/rule-based where possible; Gemini is
   used only where language understanding is actually required (extraction, translation,
   natural-language answers) — not for every step.
 - **Testing**: fusion engine is pure logic and unit-testable independent of the LLM

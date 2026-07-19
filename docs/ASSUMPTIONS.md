@@ -11,6 +11,6 @@
   reports from the same source slightly lower (to reduce single-source manipulation);
   no personal data is collected or stored.
 - Language coverage in the demo is limited to a handful of languages for time reasons;
-  the architecture supports any language Claude can translate.
+  the architecture supports any language Gemini can translate.
 - One demo venue/map is used; the data model supports multiple venues but only one is
   seeded for this submission.

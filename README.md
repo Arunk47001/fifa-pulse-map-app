@@ -107,7 +107,7 @@ Answers routing, crowd, and accessibility questions in the user's language, in p
 | Backend | Node.js 20+, Express 4 |
 | AI | Google Gemini API (gemini-flash-latest) |
 | Tests | Node.js built-in `node:test` runner, 61 tests |
-| Deployment | Vercel (frontend) + Render (backend) |
+| Deployment | Firebase Hosting (frontend) + Render (backend) |
 
 ---
 
@@ -147,16 +147,14 @@ npm test
 
 ## Live Demo
 
-- **App (Vercel):** [https://frontend-one-lovat-40.vercel.app](https://frontend-one-lovat-40.vercel.app)
-- **App (Firebase Hosting / Google Cloud):** [https://pulsemap-fifa2026.web.app](https://pulsemap-fifa2026.web.app)
+- **App:** [https://pulsemap-fifa2026.web.app](https://pulsemap-fifa2026.web.app) (Firebase Hosting / Google Cloud)
 - **Backend API:** [https://pulsemap-backend.onrender.com](https://pulsemap-backend.onrender.com)
 - **Repo:** [https://github.com/Arunk47001/fifa-pulse-map-app](https://github.com/Arunk47001/fifa-pulse-map-app)
 
 > The backend is on Render's free tier, which spins down after inactivity — the
-> first request after idle time can take ~30-50s to wake up. Both frontend
-> deployments call the same backend.
+> first request after idle time can take ~30-50s to wake up.
 
-### Redeploying the Firebase Hosting frontend
+### Redeploying the frontend
 
 ```bash
 # one-time: npm install -g firebase-tools && firebase login

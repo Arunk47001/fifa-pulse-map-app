@@ -60,7 +60,7 @@
 This logic should live in its own module (e.g. `backend/src/services/fusionEngine.js`)
 with pure functions and no network/LLM calls, so it can be fully unit tested.
 
-## Chat Assistant Input (what gets sent to Claude for `/api/ask`)
+## Chat Assistant Input (what gets sent to Gemini for `/api/ask`)
 
 ```json
 {

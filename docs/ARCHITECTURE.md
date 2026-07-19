@@ -6,9 +6,9 @@
 |----------------|-------------------------------------------|-----|
 | Frontend       | React + Vite (plain, no heavy framework)  | Fast to build, easy to deploy as static site |
 | Backend        | Node.js + Express                         | Simple REST API, easy to reason about, easy to test |
-| GenAI          | Anthropic Claude API                      | Report extraction, translation, natural-language Q&A |
+| GenAI          | Google Gemini API                         | Report extraction, translation, natural-language Q&A |
 | Data store     | In-memory store + JSON seed file (v1)     | Zero infra setup; swappable for SQLite/Postgres later |
-| Deployment     | Frontend: Vercel/Netlify. Backend: Render/Railway (free tier) | Both give a public "Deployed Link" quickly |
+| Deployment     | Frontend: Firebase Hosting. Backend: Render (free tier) | Both give a public "Deployed Link" quickly, no billing account needed |
 
 No database server is required for the MVP — this keeps the repo small (well under the
 10 MB limit) and removes a whole class of setup/security problems for a short build.
@@ -23,7 +23,7 @@ No database server is required for the MVP — this keeps the repo small (well u
         │  POST /api/reports
         ▼
  [Backend: Report Ingestion Service]
-        │  calls Claude: transcribe/translate + extract structured fields
+        │  calls Gemini: transcribe/translate + extract structured fields
         ▼
  [Structured Report: {zone, issueType, severity, timestamp, rawText, lang}]
         │
@@ -36,7 +36,7 @@ No database server is required for the MVP — this keeps the repo small (well u
         ├──► [Frontend: Live Map / Status View] (poll or simple websocket)
         │
         └──► [Chat Assistant Endpoint] POST /api/ask
-                   │  calls Claude with: user question + current ZoneState snapshot
+                   │  calls Gemini with: user question + current ZoneState snapshot
                    ▼
              Natural-language, multilingual answer + route suggestion
 ```
