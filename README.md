@@ -27,6 +27,20 @@ A retrieval chatbot over static facts cannot answer these. PulseMap can, because
 
 ---
 
+## Why This Matters: Crowd Crushes Are an Information Failure
+
+Stadium crowd disasters are rarely a surprise to the crowd itself — the danger is usually known, in fragments, by hundreds of people, minutes before officials act on it. The recurring root cause documented in public inquiries isn't "too many people"; it's **that individually-known information about a specific zone getting dangerously overcrowded never got aggregated into one trusted signal in time.** That's exactly the gap PulseMap's fusion engine is built to close.
+
+| Real incident | Documented problem | What PulseMap's mechanism targets |
+|---|---|---|
+| **Hillsborough, Sheffield (1989)** — 97 deaths | Fans were funneled into standing pens; crowd density inside specific pens became fatal before stewards/police outside had any real-time signal of *which pen* was critical. | Multiple independent fan reports of "packed/can't move" in the *same zone* raise that zone's confidence score in real time — turning scattered individual awareness into one `verified, congested` signal instead of relying on delayed visual checks from outside the pen. |
+| **Love Parade, Duisburg (2010)** — 21 deaths | A single tunnel served as both entry and exit; crowd density built up gradually with no live density signal from inside the bottleneck itself, only visible once critical. | The proactive re-route nudge (already implemented — *"Gate B congested, verified — Gate D is clear, ~6 min faster"*) is the same mechanism that could redirect incoming crowds away from a building bottleneck before it becomes one. |
+| **Astroworld Festival, Houston (2021)** — 10 deaths | Individual attendees reported distress to security and to each other throughout the crush, but no system aggregated those scattered reports into one signal organizers could act on quickly. | This is the core PulseMap pitch: fuse noisy, contradictory, individually-submitted reports into one confidence-scored zone state — instead of every report being a one-off that's easy to miss or dismiss. |
+
+**This is a hackathon MVP, not a certified safety system** — it doesn't replace trained stewards, official CCTV, or emergency protocols. What it demonstrates is the *mechanism*: turning many uncoordinated fan reports into one fast, trustworthy, confidence-scored answer per zone, and pushing that answer out *before* someone has to ask. That mechanism is directly aimed at the specific failure mode ("we knew, but not fast enough, not in one place") that recurs across these incidents.
+
+---
+
 ## What PulseMap Does Differently
 
 | Typical Stadium Chatbot | PulseMap |
