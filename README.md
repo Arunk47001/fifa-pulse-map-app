@@ -35,7 +35,7 @@ A retrieval chatbot over static facts cannot answer these. PulseMap can, because
 ```
 Fan report (any language)
         ↓
-   Claude API  ←─── [extraction + translation only]
+   Gemini API  ←─── [extraction + translation only]
         │            "Gate B cola muy larga" → {zoneId: gate-b, issueType: queue, severity: high}
         ↓
   Fusion Engine  ←── [deterministic, no LLM, fully unit tested]
@@ -45,14 +45,14 @@ Fan report (any language)
         │
    ┌────┴────┐
    ↓         ↓
-Nudge     Claude API  ←── [language answer only, grounded in ZoneState snapshot]
+Nudge     Gemini API  ←── [language answer only, grounded in ZoneState snapshot]
 Engine    Assistant        "Gate B is congested (verified). Gate D is clear — ~6 min walk."
    ↓
 Proactive alerts pushed to fans
 before they ask
 ```
 
-**Key invariant:** Claude is used exactly twice — once to *extract structure from language*, once to *phrase a pre-computed answer in the user's language*. All decisions (routing, confidence, nudges) are made by deterministic code that is independently testable.
+**Key invariant:** Gemini is used exactly twice — once to *extract structure from language*, once to *phrase a pre-computed answer in the user's language*. All decisions (routing, confidence, nudges) are made by deterministic code that is independently testable.
 
 ---
 
@@ -74,7 +74,7 @@ Emits targeted guidance from the fused state — without being asked:
 Nudges are suppressed when confidence is `unverified` — the system refuses to mislead.
 
 ### Multilingual Report Submission + Voice Input
-Fans report in any of 8 languages (English, Spanish, French, German, Portuguese, Arabic, Chinese, Japanese). Claude translates and extracts structured fields. Voice input via Web Speech API matches recognition language to the selected input language.
+Fans report in any of 8 languages (English, Spanish, French, German, Portuguese, Arabic, Chinese, Japanese). Gemini translates and extracts structured fields. Voice input via Web Speech API matches recognition language to the selected input language.
 
 ### Pulse Feed
 A live ops ticker showing the most recent structured reports, with severity badges, translation markers, and timestamps — giving organizers a real-time view of the extraction pipeline working on actual fan language.
@@ -95,7 +95,7 @@ Answers routing, crowd, and accessibility questions in the user's language, in p
 
 **Rate limiting:** 5 reports per IP per 60-second window with a simple in-memory counter. Input is capped at 500 characters before any processing.
 
-**LLM as last mile:** Claude is called only where language understanding is genuinely required. Fusion, routing, nudge generation, and confidence scoring are all deterministic — the LLM cannot be manipulated into producing incorrect zone states.
+**LLM as last mile:** Gemini is called only where language understanding is genuinely required. Fusion, routing, nudge generation, and confidence scoring are all deterministic — the LLM cannot be manipulated into producing incorrect zone states.
 
 ---
 
@@ -105,7 +105,7 @@ Answers routing, crowd, and accessibility questions in the user's language, in p
 |---|---|
 | Frontend | React 18, Vite 5, plain CSS (no component library) |
 | Backend | Node.js 20+, Express 4 |
-| AI | Anthropic Claude API (claude-3-5-haiku) |
+| AI | Google Gemini API (gemini-flash-latest) |
 | Tests | Node.js built-in `node:test` runner, 61 tests |
 | Deployment | Vercel (frontend) + Render (backend) |
 
@@ -116,7 +116,7 @@ Answers routing, crowd, and accessibility questions in the user's language, in p
 ```bash
 # backend
 cd backend
-cp ../.env.example .env    # paste your ANTHROPIC_API_KEY
+cp ../.env.example .env    # paste your GEMINI_API_KEY
 npm install
 npm run dev                # http://localhost:3001
 
@@ -147,8 +147,12 @@ npm test
 
 ## Live Demo
 
-- **App:** [TODO — add deployed link before submission]
-- **Repo:** [TODO — add GitHub link before submission]
+- **App:** [https://frontend-one-lovat-40.vercel.app](https://frontend-one-lovat-40.vercel.app)
+- **Backend API:** [https://pulsemap-backend.onrender.com](https://pulsemap-backend.onrender.com)
+- **Repo:** [https://github.com/Arunk47001/fifa-pulse-map-app](https://github.com/Arunk47001/fifa-pulse-map-app)
+
+> The backend is on Render's free tier, which spins down after inactivity — the
+> first request after idle time can take ~30-50s to wake up.
 
 ---
 
