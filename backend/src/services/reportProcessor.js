@@ -1,4 +1,4 @@
-import { callClaude, CLAUDE_AVAILABLE } from './claudeClient.js';
+import { callGemini, GEMINI_AVAILABLE } from './geminiClient.js';
 import { getZones } from '../models/store.js';
 
 const SYSTEM_PROMPT = `You are a structured data extraction assistant for a stadium crowd-intelligence system.
@@ -16,13 +16,13 @@ Respond ONLY with a JSON object in this exact format (no markdown, no extra text
 If you cannot determine the zone or issue type, set them to null.`;
 
 export async function processReport(rawText, languageHint = null) {
-  if (CLAUDE_AVAILABLE) {
-    return processWithClaude(rawText, languageHint);
+  if (GEMINI_AVAILABLE) {
+    return processWithGemini(rawText, languageHint);
   }
   return processWithKeywords(rawText, languageHint);
 }
 
-async function processWithClaude(rawText, languageHint) {
+async function processWithGemini(rawText, languageHint) {
   const zones = getZones();
   const zoneList = zones.map(z => `${z.id} (${z.name})`).join(', ');
 
@@ -37,14 +37,16 @@ Extract the structured fields. If a language hint is provided, use it: ${languag
 
   let responseText;
   try {
-    responseText = await callClaude({ system: SYSTEM_PROMPT, prompt });
+    responseText = await callGemini({ system: SYSTEM_PROMPT, prompt });
   } catch (err) {
-    throw new Error(`Claude API error: ${err.message}`);
+    throw new Error(`Gemini API error: ${err.message}`);
   }
+
+  const cleaned = responseText.trim().replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '');
 
   let parsed;
   try {
-    parsed = JSON.parse(responseText.trim());
+    parsed = JSON.parse(cleaned);
   } catch {
     throw new Error(`Malformed extraction response: ${responseText}`);
   }

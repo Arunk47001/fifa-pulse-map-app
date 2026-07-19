@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { getZones, getReportsByZone } from '../models/store.js';
 import { fuseZone } from '../services/fusionEngine.js';
-import { callClaude, CLAUDE_AVAILABLE } from '../services/claudeClient.js';
+import { callGemini, GEMINI_AVAILABLE } from '../services/geminiClient.js';
 
 const router = Router();
 
@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
 
   let answer;
 
-  if (CLAUDE_AVAILABLE) {
+  if (GEMINI_AVAILABLE) {
     const prompt = `User question: ${question}
 
 User language preference: ${userLanguagePreference}
@@ -49,7 +49,7 @@ Current zone states snapshot:
 ${JSON.stringify(zoneStatesSnapshot, null, 2)}`;
 
     try {
-      answer = await callClaude({ system: SYSTEM_PROMPT, prompt });
+      answer = await callGemini({ system: SYSTEM_PROMPT, prompt });
     } catch {
       answer = buildFallbackAnswer(question, zoneStatesSnapshot, accessibilityMode);
     }
@@ -57,7 +57,7 @@ ${JSON.stringify(zoneStatesSnapshot, null, 2)}`;
     answer = buildFallbackAnswer(question, zoneStatesSnapshot, accessibilityMode);
   }
 
-  res.json({ answer, zoneStatesSnapshot, mode: CLAUDE_AVAILABLE ? 'ai' : 'fallback' });
+  res.json({ answer, zoneStatesSnapshot, mode: GEMINI_AVAILABLE ? 'ai' : 'fallback' });
 });
 
 const STATUS_EMOJI = { clear: '✅', moderate: '🟡', congested: '🔴', unknown: '⚪' };

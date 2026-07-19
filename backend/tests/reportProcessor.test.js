@@ -1,19 +1,19 @@
 // Tests for the keyword-based report processor (offline fallback, no LLM required).
-// The Claude path is tested separately; these verify the rules layer that always runs
+// The Gemini path is tested separately; these verify the rules layer that always runs
 // when the API key is absent — which is also what judges see on a cold demo machine.
 
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 
 // We call the module-private `processWithKeywords` by testing `processReport`
-// with CLAUDE_AVAILABLE=false.  Because reportProcessor imports claudeClient at
+// with GEMINI_AVAILABLE=false.  Because reportProcessor imports geminiClient at
 // module load time we mock it by importing our own fixture.
 // Instead, we re-implement the function-under-test inline by importing the raw
 // keyword matching through the public processReport export and stubbing the env.
 
 // The simplest safe approach for offline testing: import processReport and ensure
-// ANTHROPIC_API_KEY is absent so the keyword fallback runs.
-process.env.ANTHROPIC_API_KEY = '';
+// GEMINI_API_KEY is absent so the keyword fallback runs.
+process.env.GEMINI_API_KEY = '';
 
 import { processReport } from '../src/services/reportProcessor.js';
 
