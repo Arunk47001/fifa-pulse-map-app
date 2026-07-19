@@ -4,6 +4,8 @@
 
 > "Not a smarter FAQ bot. A collective intelligence system that fuses noisy, contradictory crowd reports into one confidence-scored, actionable picture of the stadium — in real time."
 
+**Chosen vertical / persona:** Fans — navigation, accessibility, multilingual assistance, and real-time decision support at the venue. See [`docs/PROJECT_BRIEF.md`](docs/PROJECT_BRIEF.md) for the full brief.
+
 ---
 
 ## Built with Google
@@ -103,6 +105,19 @@ Answers routing, crowd, and accessibility questions in the user's language, in p
 **Rate limiting:** 5 reports per IP per 60-second window with a simple in-memory counter. Input is capped at 500 characters before any processing.
 
 **LLM as last mile:** Gemini is called only where language understanding is genuinely required. Fusion, routing, nudge generation, and confidence scoring are all deterministic — the LLM cannot be manipulated into producing incorrect zone states.
+
+**Efficiency:** demo scenarios, the fusion engine, nudge generation, and the offline keyword fallback all run with zero LLM calls — Gemini is invoked only for translating/extracting a fan's free-text report and for phrasing one chat answer, each capped at a small `max_tokens`/output budget. No polling loop or background job burns API quota.
+
+---
+
+## Accessibility
+
+- **Never color alone:** every zone status pairs a color with an icon and text label (`✓`/`~`/`!`/`?` for clear/moderate/congested/unknown), including in the SVG map's legend.
+- **Full keyboard navigation:** zone nodes are focusable (`tabIndex`) and activate on both `Enter` and `Space`, not just click; all interactive controls are real `<button>`s or carry explicit ARIA roles.
+- **Screen-reader support throughout:** `aria-label`s describe zone state changes, `role="log"`/`aria-live="polite"` regions announce new chat messages and pulse-feed entries without stealing focus, and `role="alert"` surfaces form errors immediately.
+- **Plain-language mode:** the chat assistant can respond in short, jargon-free sentences on request — see `accessibilityMode` in [`backend/src/routes/ask.js`](backend/src/routes/ask.js).
+- **Accessible-route awareness:** zones are flagged `accessible: true/false` in the data model, and both the nudge engine and assistant prioritize accessible paths/amenities when relevant.
+- **Voice input:** report submission supports the Web Speech API as an alternative to typing, matched to the selected language.
 
 ---
 
