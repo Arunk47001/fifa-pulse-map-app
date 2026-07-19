@@ -6,6 +6,13 @@
 
 ---
 
+## Built with Google
+
+- **[Google Gemini API](https://ai.google.dev/)** (`gemini-flash-latest`) is the entire GenAI layer — it translates fan reports from 8 languages, extracts structured `{zoneId, issueType, severity}` fields, and phrases the conversational assistant's answers. See [`backend/src/services/geminiClient.js`](backend/src/services/geminiClient.js).
+- **[Firebase Hosting](https://firebase.google.com/products/hosting)** serves the live production frontend at [pulsemap-fifa2026.web.app](https://pulsemap-fifa2026.web.app), deployed straight from this repo via `scripts/deploy-gcp.sh`.
+
+---
+
 ## The Problem
 
 Every stadium assistant submission answers questions from static data. But the questions fans actually need answered during a match are **dynamic and contested**:
@@ -105,9 +112,9 @@ Answers routing, crowd, and accessibility questions in the user's language, in p
 |---|---|
 | Frontend | React 18, Vite 5, plain CSS (no component library) |
 | Backend | Node.js 20+, Express 4 |
-| AI | Google Gemini API (gemini-flash-latest) |
+| AI | **Google Gemini API** (`gemini-flash-latest`) |
 | Tests | Node.js built-in `node:test` runner, 61 tests |
-| Deployment | Firebase Hosting (frontend) + Render (backend) |
+| Deployment | **Firebase Hosting** (frontend, Google Cloud) + Render (backend) |
 
 ---
 
