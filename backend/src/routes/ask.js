@@ -38,6 +38,7 @@ router.post('/', async (req, res) => {
   }));
 
   let answer;
+  let usedAi = false;
 
   if (GEMINI_AVAILABLE) {
     const prompt = `User question: ${question}
@@ -50,6 +51,7 @@ ${JSON.stringify(zoneStatesSnapshot, null, 2)}`;
 
     try {
       answer = await callGemini({ system: SYSTEM_PROMPT, prompt });
+      usedAi = true;
     } catch {
       answer = buildFallbackAnswer(question, zoneStatesSnapshot, accessibilityMode);
     }
@@ -57,7 +59,7 @@ ${JSON.stringify(zoneStatesSnapshot, null, 2)}`;
     answer = buildFallbackAnswer(question, zoneStatesSnapshot, accessibilityMode);
   }
 
-  res.json({ answer, zoneStatesSnapshot, mode: GEMINI_AVAILABLE ? 'ai' : 'fallback' });
+  res.json({ answer, zoneStatesSnapshot, mode: usedAi ? 'ai' : 'fallback' });
 });
 
 const STATUS_EMOJI = { clear: '✅', moderate: '🟡', congested: '🔴', unknown: '⚪' };
