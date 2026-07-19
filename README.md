@@ -147,12 +147,25 @@ npm test
 
 ## Live Demo
 
-- **App:** [https://frontend-one-lovat-40.vercel.app](https://frontend-one-lovat-40.vercel.app)
+- **App (Vercel):** [https://frontend-one-lovat-40.vercel.app](https://frontend-one-lovat-40.vercel.app)
+- **App (Firebase Hosting / Google Cloud):** [https://pulsemap-fifa2026.web.app](https://pulsemap-fifa2026.web.app)
 - **Backend API:** [https://pulsemap-backend.onrender.com](https://pulsemap-backend.onrender.com)
 - **Repo:** [https://github.com/Arunk47001/fifa-pulse-map-app](https://github.com/Arunk47001/fifa-pulse-map-app)
 
 > The backend is on Render's free tier, which spins down after inactivity — the
-> first request after idle time can take ~30-50s to wake up.
+> first request after idle time can take ~30-50s to wake up. Both frontend
+> deployments call the same backend.
+
+### Redeploying the Firebase Hosting frontend
+
+```bash
+# one-time: npm install -g firebase-tools && firebase login
+./scripts/deploy-gcp.sh
+```
+
+(A full Cloud Run backend deploy is possible too, but requires enabling
+Firebase/GCP's Blaze pay-as-you-go plan — free-tier usage should stay $0 for
+a demo, but it does require a card on file, so it's not the default path here.)
 
 ---
 
